@@ -7,6 +7,7 @@ import InputText from "primevue/badge";
 import Avatar from "primevue/badge";
 import Ripple from "primevue/ripple";
 
+
 import 'primeicons/primeicons.css';
 
 
@@ -76,63 +77,43 @@ const items = ref([
 
 <template>
 
-  <div class="card">
-    <Menubar :model="items">
-      <template #start>
-<!--        Image-->
-      </template>
-
-      <template #item="{ item, props, hasSubmenu, root }">
-        <a v-ripple class="flex items-center" v-bind="props.action">
-          <span :class="item.icon" />
-          <span class="ml-2">{{ item.label }}</span>
-          <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
-          <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-          <i v-if="hasSubmenu" :class="['pi pi-angle-down', { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root }]"></i>
-        </a>
-      </template>
-
-      <template #end>
-        <div class="flex items-center gap-2">
-          <InputText placeholder="Search" type="text" class="w-32 sm:w-auto" />
-          <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-        </div>
-      </template>
-    </Menubar>
-  </div>
-
+  <Menubar class="w-full" :model="items">
+    <template #start>
+    <!--Images-->
+    </template>
+    <template #item="{ item, props, hasSubmenu, root }">
+      <a v-ripple class="flex items-center" v-bind="props.action">
+        <span :class="item.icon" />
+        <span class="ml-2">{{ item.label }}</span>
+        <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
+        <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+        <i v-if="hasSubmenu" :class="['pi pi-angle-down', { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root }]"></i>
+      </a>
+    </template>
+    <template #end>
+      <div class="flex items-center gap-2">
+        <InputText placeholder="Search" type="text" class="w-32 sm:w-auto" />
+        <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
+      </div>
+    </template>
+  </Menubar>
 
   <h1>{{ msg }}</h1>
 
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-
-    <div class="card flex justify-center">
-      <Button label="Check" icon="pi pi-check" />
-    </div>
 
 </template>
 
 <style scoped>
 .read-the-docs {
   color: #888;
+}
+</style>
+
+<style module>
+.header {
+  width: 100%;
 }
 </style>
